@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: organ-connect
+    runtime: node
+    buildCommand: npm ci && npm --prefix client ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
